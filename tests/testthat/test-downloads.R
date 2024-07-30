@@ -3,7 +3,12 @@ path <- list.files(system.file("extdata/wc", package = "shinyscholar"),
 
 test_that("{shinytest2} recording: e2e_markdown", {
 
-  app <- shinytest2::AppDriver$new(app_dir = system.file("shiny", package = "shinyscholar"), name = "e2e_markdown")
+  app <- shinytest2::AppDriver$new(
+    app_dir = system.file("shiny", package = "shinyscholar"),
+    name = "e2e_table_download",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "select")
   app$set_inputs(selectSel = "select_user")
   app$upload_file("select_user-ras" = path)
@@ -33,7 +38,12 @@ test_that("{shinytest2} recording: e2e_markdown", {
 
 test_that("{shinytest2} recording: e2e_table_download", {
 
-  app <- shinytest2::AppDriver$new(app_dir = system.file("shiny", package = "shinyscholar"), name = "e2e_table_download")
+  app <- shinytest2::AppDriver$new(
+    app_dir = system.file("shiny", package = "shinyscholar"),
+    name = "e2e_table_download",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "select")
   app$set_inputs(selectSel = "select_user")
   app$upload_file("select_user-ras" = path)
@@ -47,7 +57,12 @@ test_that("{shinytest2} recording: e2e_table_download", {
 
 test_that("{shinytest2} recording: e2e_plot_downloads", {
 
-  app <- shinytest2::AppDriver$new(app_dir = system.file("shiny", package = "shinyscholar"), name = "e2e_plot_downloads")
+  app <- shinytest2::AppDriver$new(
+    app_dir = system.file("shiny", package = "shinyscholar"),
+    name = "e2e_plot_downloads",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "select")
   app$set_inputs(selectSel = "select_user")
   app$upload_file("select_user-ras" = path)

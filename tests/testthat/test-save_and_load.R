@@ -125,7 +125,12 @@ test_that("Check that lines added by save_and_load are functional", {
   global_lines[core_target] <- 'core_modules <- c(file.path("modules", "core_intro.R"), file.path("modules", "core_load.R"), file.path("modules", "core_mapping.R"), file.path("modules", "core_save.R"))'
   writeLines(global_lines, global_path)
 
-  app <- shinytest2::AppDriver$new(app_dir = file.path(td, "shinyscholar", "inst", "shiny"), name = "save_and_load_test")
+  app <- shinytest2::AppDriver$new(
+    app_dir = file.path(td, "shinyscholar", "inst", "shiny"),
+    name = "save_and_load_test",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "test")
   app$set_inputs(testSel = "test_test")
   app$set_inputs("test_test-checkbox" = FALSE)
@@ -156,7 +161,12 @@ test_that("Check that lines added by save_and_load are functional", {
   expect_equal(common$state$test_test$single_quote, "test")
   expect_equal(common$state$test_test$switch, FALSE)
 
-  app <- shinytest2::AppDriver$new(app_dir = file.path(td, "shinyscholar", "inst", "shiny"), name = "save_and_load_test")
+  app <- shinytest2::AppDriver$new(
+    app_dir = file.path(td, "shinyscholar", "inst", "shiny"),
+    name = "save_and_load_test",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(introTabs = "Load Prior Session")
   app$upload_file("core_load-load_session" = save_path)
   app$click("core_load-goLoad_session")

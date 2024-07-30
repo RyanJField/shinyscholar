@@ -17,7 +17,12 @@ test_that("Check plot_scatter function works as expected", {
 
 test_that("{shinytest2} recording: e2e_plot_scatter", {
 
-  app <- shinytest2::AppDriver$new(app_dir = system.file("shiny", package = "shinyscholar"), name = "e2e_plot_scatter")
+  app <- shinytest2::AppDriver$new(
+    app_dir = system.file("shiny", package = "shinyscholar"),
+    name = "e2e_plot_scatter",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "select")
   app$set_inputs(selectSel = "select_user")
   app$upload_file("select_user-ras" = path)

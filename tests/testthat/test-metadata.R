@@ -120,7 +120,12 @@ test_that("Check that lines added by metadata are functional", {
   global_lines[core_target] <- 'core_modules <- c(file.path("modules", "core_intro.R"), file.path("modules", "core_load.R"), file.path("modules", "core_mapping.R"), file.path("modules", "core_save.R"))'
   writeLines(global_lines, file.path(shiny_path, "global.R"))
 
-  app <- shinytest2::AppDriver$new(app_dir = shiny_path, name = "e2e_metadata_test")
+  app <- shinytest2::AppDriver$new(
+    app_dir = shiny_path,
+    name = "e2e_metadata_test",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "test")
   app$set_inputs(testSel = "test_test")
   app$set_inputs("test_test-checkbox" = TRUE)

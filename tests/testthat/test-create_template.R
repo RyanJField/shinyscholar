@@ -116,7 +116,12 @@ test_that("Check create template function works as expected", {
 
   #there is not much to test when running the app, but this confirms that it runs
   test_that("{shinytest2} recording: testing_create_template", {
-    app <- shinytest2::AppDriver$new(app_dir = file.path(directory, "shinyscholar", "inst", "shiny"), name = "create_test")
+    app <- shinytest2::AppDriver$new(
+      app_dir = file.path(directory,"shinyscholar", "inst", "shiny"),
+      name = "create_test",
+      variant = shinytest2::platform_variant(),
+      load_timeout = 60 * 1000
+    )
     common <- app$get_value(export = "common")
     expect_true(is.null(common$raster))
   })
@@ -158,7 +163,12 @@ test_that("Check create template function works with false settings", {
 
   #there is not much to test when running the app, but this confirms that it runs
   test_that("{shinytest2} recording: testing_create_template", {
-    app <- shinytest2::AppDriver$new(app_dir = file.path(directory, "shinyscholar", "inst", "shiny"), name = "create_test")
+    app <- shinytest2::AppDriver$new(
+      app_dir = file.path(directory, "shinyscholar", "inst", "shiny"),
+      name = "create_test",
+      variant = shinytest2::platform_variant(),
+      load_timeout = 60 * 1000
+    )
     common <- app$get_value(export = "common")
     expect_true(is.null(common$raster))
   })

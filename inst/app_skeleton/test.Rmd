@@ -5,7 +5,12 @@ test_that("Check {{module}} function works as expected", {
 })
 
 test_that("{shinytest2} recording: e2e_{{module}}", {
-  app <- shinytest2::AppDriver$new(app_dir = system.file("shiny", package = "{{app_library}}"), name = "e2e_{{module}}")
+  app <- shinytest2::AppDriver$new(
+    app_dir = system.file("shiny", package = "{{app_library}}"),
+    name = "e2e_{{module}}",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "{{component}}")
   app$set_inputs({{component}}Sel = "{{module}}")
   app$click("{{module}}-run")

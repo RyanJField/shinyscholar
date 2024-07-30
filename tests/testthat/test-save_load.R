@@ -6,7 +6,12 @@ test_that("{shinytest2} recording: e2e_empty_save", {
 
   skip_on_ci()
 
-  app <- shinytest2::AppDriver$new(app_dir = system.file("shiny", package = "shinyscholar"), name = "e2e_empty_save")
+  app <- shinytest2::AppDriver$new(
+    app_dir = system.file("shiny", package = "shinyscholar"),
+    name = "e2e_empty_save",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "select")
   app$set_inputs(main = "Save")
   save_file <- app$get_download("core_save-save_session", filename = save_path)
@@ -19,7 +24,12 @@ test_that("{shinytest2} recording: e2e_save_scat", {
 
   skip_on_ci()
 
-  app <- shinytest2::AppDriver$new(app_dir = system.file("shiny", package = "shinyscholar"), name = "e2e_save_scat")
+  app <- shinytest2::AppDriver$new(
+    app_dir = system.file("shiny", package = "shinyscholar"),
+    name = "e2e_save_scat",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "select")
   app$set_inputs(selectSel = "select_user")
   app$upload_file("select_user-ras" = path)
@@ -41,7 +51,12 @@ test_that("{shinytest2} recording: e2e_save_hist", {
 
   skip_on_ci()
 
-  app <- shinytest2::AppDriver$new(app_dir = system.file("shiny", package = "shinyscholar"), name = "e2e_save_hist")
+  app <- shinytest2::AppDriver$new(
+    app_dir = system.file("shiny", package = "shinyscholar"),
+    name = "e2e_save_hist",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(tabs = "select")
   app$set_inputs(selectSel = "select_user")
   app$upload_file("select_user-ras" = path)
@@ -62,7 +77,12 @@ test_that("{shinytest2} recording: e2e_load", {
 
   skip_on_ci()
 
-  app <- shinytest2::AppDriver$new(app_dir = system.file("shiny", package = "shinyscholar"), name = "e2e_load")
+  app <- shinytest2::AppDriver$new(
+    app_dir = system.file("shiny", package = "shinyscholar"),
+    name = "e2e_load",
+    variant = shinytest2::platform_variant(),
+    load_timeout = 60 * 1000
+  )
   app$set_inputs(introTabs = "Load Prior Session")
   app$upload_file("core_load-load_session" = save_path)
   app$click("core_load-goLoad_session")
